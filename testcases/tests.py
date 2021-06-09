@@ -205,18 +205,14 @@ class TestBMICategoriesAndHealthRisk(TestCase):
         self.assertEqual(output_json[1]["People"][0]["HealthRisk"], expected_health_risk)
 
 
-class TestHeavyPayload(TestCase):
-    def test_1_lac_records(self):
+class TestBulkJsonData(TestCase):
+    def test_large_data(self):
         base_path = os.path.dirname(os.path.dirname(__file__))
-        filename = 'data/bulk_data.json'
-        try:
-            with open(filename) as json_file:
-                json_data = json.load(json_file)
-        except FileNotFoundError:
-            print("Please Run 'random_data_generator/random_json_data_generator.py' file first")
-        else:
-            time_before = time.time()
-            output_json = get_bmi_calculated(json_data)
-            time_after = time.time()
-            final_time = time_after - time_before
-            self.assertLessEqual(final_time, 5)
+        filename = base_path + '/data/bulk_data.json'
+        with open(filename) as json_file:
+            json_data = json.load(json_file)
+        time_before = time.time()
+        output_json = get_bmi_calculated(json_data)
+        time_after = time.time()
+        final_time = time_after - time_before
+        self.assertLessEqual(final_time, 5)
