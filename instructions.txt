@@ -1,0 +1,16 @@
+Application Name:
+	Body Mass Index Calculator
+
+Description:
+	This is a standalone Application written in Python3.
+	There are No external dependencies to the Application.
+
+Internal Working:
+	- The execution start from main.py file.
+	- main.py module will pick up the JSON data from a file
+		and then convert it into Python Native Datatypes.
+	- Then the connector function will be called internally and that
+		connector function will internally Fetch data from BMICalculator class.
+	- The Calculated Data will be given to connector function again.
+	- Then finally the Python native data will be converted to JSON
+		and given as response.
